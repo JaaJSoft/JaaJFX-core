@@ -14,20 +14,17 @@
  *
  */
 
-plugins {
-    id 'java-library'
-}
+package dev.jaaj.view;
 
-group 'dev.jaaj'
-version '0.1'
+import org.junit.Before;
 
-sourceCompatibility = 1.8
+public class ViewManagerTest {
+    private ViewManager viewManager;
 
-repositories {
-    mavenCentral()
-}
+    @Before
+    public void setUp() throws Exception {
+        viewManager = new ViewManager("Oui");
+    }
 
-dependencies {
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }

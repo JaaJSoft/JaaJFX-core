@@ -14,20 +14,10 @@
  *
  */
 
-plugins {
-    id 'java-library'
-}
+package dev.jaaj.view.exception;
 
-group 'dev.jaaj'
-version '0.1'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+public class ExceptionFXMLNotFound extends Exception {
+    public ExceptionFXMLNotFound(String fxml) {
+        super(fxml);
+    }
 }

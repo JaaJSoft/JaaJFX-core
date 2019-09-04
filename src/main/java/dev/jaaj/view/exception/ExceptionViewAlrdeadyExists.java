@@ -14,20 +14,12 @@
  *
  */
 
-plugins {
-    id 'java-library'
-}
+package dev.jaaj.view.exception;
 
-group 'dev.jaaj'
-version '0.1'
+import dev.jaaj.view.View;
 
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+public class ExceptionViewAlrdeadyExists extends RuntimeException {
+    public ExceptionViewAlrdeadyExists(View view) {
+        super(view.getClass().getName());
+    }
 }
