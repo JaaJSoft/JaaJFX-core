@@ -16,20 +16,20 @@
 
 package dev.jaaj.view;
 
-import org.junit.Before;
-import org.junit.Test;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-public class ViewManagerTest {
-    private ViewManager viewManager;
-
-    @Before
-    public void setUp() throws Exception {
-
+public class Example extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        ViewManager viewManager = new ViewManager("Oui");
+        viewManager.addView("default", new DefaultView(), "Bonjour", viewManager);
+        viewManager.addView("default2", new DefaultView(), "Bonjour2", viewManager);
+        viewManager.setActiveView("default");
+        viewManager.show();
     }
 
-    @Test
-    public void test() {
-        viewManager.setActiveView("DefaultView.class", 500, 500);
-        viewManager.show();
+    public static void main(String[] args) {
+        launch(args);
     }
 }

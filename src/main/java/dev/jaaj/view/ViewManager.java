@@ -21,7 +21,7 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ViewManager {
 
-    private final HashSet<View> views = new HashSet<>();
+    private final HashMap<String, View> views = new HashMap<>();
     private View activeView;
     private final Stage primaryStage;
     private ScheduledExecutorService updater = Executors.newSingleThreadScheduledExecutor();
@@ -45,12 +45,12 @@ public class ViewManager {
             System.exit(0);
         });
         primaryStage.setTitle(defaultTitle);
+        startUpdating();
     }
 
     public ViewManager(String defaulTitle, int updaterPeriod) {
         this(defaulTitle);
         this.updaterPeriod = updaterPeriod;
-        startUpdating();
     }
 
     public ViewManager(String defaultTitle, Image icon) {
@@ -61,39 +61,39 @@ public class ViewManager {
     public ViewManager(String defaultTitle, Image icon, int updaterPeriod) {
         this(defaultTitle, icon);
         this.updaterPeriod = updaterPeriod;
-        startUpdating();
     }
 
 
-    public void addView(View view) throws ExceptionViewAlrdeadyExists {
-        if (views.add(view)) {
-            view.onCreate();
+    public void addView(String name, View view, Object... args) throws ExceptionViewAlrdeadyExists {
+        if (!views.containsKey(name)) {
+            views.put(name, view);
+            view.onCreate(args);
         } else {
             throw new ExceptionViewAlrdeadyExists(view);
         }
     }
 
-    public Optional<View> getView(Class<? extends View> klazz) {
-        for (View v : views) {
-            if (v.getClass().equals(klazz)) {
-                return Optional.of(v);
-            }
-        }
-        return Optional.empty();
+    public Optional<View> getView(String name) {
+        return Optional.ofNullable(views.get(name));
     }
 
-    public void setActiveView(Class<? extends View> klazz, int width, int height) {
+    public void setActiveView(String name, Object... args) {
         if (activeView != null) {
             activeView.stop();
         }
-        primaryStage.setWidth(width);
-        primaryStage.setHeight(height);
-        getView(klazz).ifPresent(view -> {
-            view.start();
+
+        getView(name).ifPresent(view -> {
+            view.start(args);
             activeView = view;
             primaryStage.setScene(view.getScene());
         });
     }
+
+//    public void setActiveView(String name, int width, int height, Object... args) {
+//        setActiveView(name, args);
+//        primaryStage.setWidth(width);
+//        primaryStage.setHeight(height);
+//    }
 
     public void show() {
         primaryStage.show();

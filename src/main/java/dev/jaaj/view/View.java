@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class View {
 
@@ -34,7 +33,6 @@ public abstract class View {
     protected URL urlFXML;
     protected List<View> subView;
     protected View parent = null;
-
 
     public View(URL urlFXML) throws IOException {
         this.urlFXML = urlFXML;
@@ -50,25 +48,35 @@ public abstract class View {
         this.parent = parent;
     }
 
+    public View(Node root) {
+        this.root = root;
+    }
+
+    public View(Node root, View parent) {
+        this.root = root;
+        this.parent = parent;
+    }
+
     /**
      * Called when the scene is add in the scene manager or in another view
+     * @param args
      */
-    public abstract void onCreate();
+    public abstract void onCreate(Object... args);
 
 
     /**
      * Start the view
      */
-    protected abstract void onStart();
+    protected abstract void onStart(Object... args);
 
     /**
      * Called at every SceneManager::setScene()
      * Update all sub view before
      */
-    public void start() {
-        onStart();
+    public void start(Object... args) {
+        onStart(args);
         for (View v : subView) {
-            v.start();
+            v.start(args);
         }
     }
 
@@ -118,18 +126,5 @@ public abstract class View {
 
     public void addSubView(View v) {
         subView.add(v);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        View view = (View) o;
-        return Objects.equals(urlFXML, view.urlFXML);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(urlFXML);
     }
 }
