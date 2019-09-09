@@ -21,7 +21,8 @@ import javafx.stage.Stage;
 public class MacOSTheme implements Theme {
     @Override
     public boolean canApply(Stage stage) {
-        return false;
+        String os = System.getProperty("os.name");
+        return os.toLowerCase().contains("mac");
     }
 
     @Override
