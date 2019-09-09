@@ -14,24 +14,18 @@
  *
  */
 
-plugins {
-    id 'java-library'
-}
+package dev.jaaj.view.theme;
 
-group 'dev.jaaj'
-version '0.1'
+import javafx.stage.Stage;
 
-sourceCompatibility = 1.8
+public class MacOSTheme implements Theme {
+    @Override
+    public boolean canApply(Stage stage) {
+        return false;
+    }
 
-repositories {
-    mavenCentral()
-    jcenter()
-}
+    @Override
+    public void applyTheme(Stage scene) {
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    implementation 'org.aerofx:aerofx:0.2'
-    implementation 'net.java.dev.jna:jna-platform:5.4.0'
-    implementation 'com.aquafx-project:aquafx:0.2'
-    implementation 'org.jfxtras:jmetro:8.5.8'
+    }
 }
