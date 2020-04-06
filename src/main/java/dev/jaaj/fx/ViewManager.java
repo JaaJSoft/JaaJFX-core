@@ -14,9 +14,9 @@
  *
  */
 
-package dev.jaaj.view;
+package dev.jaaj.fx;
 
-import dev.jaaj.view.exception.ExceptionViewAlrdeadyExists;
+import dev.jaaj.fx.exception.ExceptionViewAlrdeadyExists;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;

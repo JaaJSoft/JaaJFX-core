@@ -14,7 +14,7 @@
  *
  */
 
-package dev.jaaj.view;
+package dev.jaaj.fx;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -59,6 +59,7 @@ public abstract class View {
 
     /**
      * Called when the scene is add in the scene manager or in another view
+     *
      * @param args
      */
     public abstract void onCreate(Object... args);

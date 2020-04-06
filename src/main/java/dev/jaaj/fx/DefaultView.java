@@ -14,7 +14,7 @@
  *
  */
 
-package dev.jaaj.view;
+package dev.jaaj.fx;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

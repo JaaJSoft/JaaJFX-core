@@ -14,19 +14,10 @@
  *
  */
 
-package dev.jaaj.view.theme;
+package dev.jaaj.fx.exception;
 
-import javafx.stage.Stage;
-
-public class WindowsAeroTheme implements Theme {
-    @Override
-    public boolean canApply(Stage stage) {
-        String os = System.getProperty("os.name");
-        return os.toLowerCase().contains("win");
-    }
-
-    @Override
-    public void applyTheme(Stage scene) {
-
+public class ExceptionFXMLNotFound extends Exception {
+    public ExceptionFXMLNotFound(String fxml) {
+        super(fxml);
     }
 }

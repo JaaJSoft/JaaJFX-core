@@ -14,10 +14,18 @@
  *
  */
 
-package dev.jaaj.view.exception;
+package dev.jaaj.fx.theme;
 
-public class ExceptionFXMLNotFound extends Exception {
-    public ExceptionFXMLNotFound(String fxml) {
-        super(fxml);
+import javafx.stage.Stage;
+
+public class GTKTheme implements Theme {
+    @Override
+    public boolean canApply(Stage stage) {
+        return false;
+    }
+
+    @Override
+    public void applyTheme(Stage scene) {
+
     }
 }

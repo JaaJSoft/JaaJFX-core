@@ -14,18 +14,22 @@
  *
  */
 
-package dev.jaaj.view.theme;
+package dev.jaaj.fx;
 
+import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class DefaultTheme implements Theme {
+public class Example extends Application {
     @Override
-    public boolean canApply(Stage stage) {
-        return true;
+    public void start(Stage primaryStage) throws Exception {
+        ViewManager viewManager = new ViewManager("Oui");
+        viewManager.addView("default", new DefaultView(), "Bonjour", viewManager);
+        viewManager.addView("default2", new DefaultView(), "Bonjour2", viewManager);
+        viewManager.setActiveView("default");
+        viewManager.show();
     }
 
-    @Override
-    public void applyTheme(Stage scene) {
-
+    public static void main(String[] args) {
+        launch(args);
     }
 }

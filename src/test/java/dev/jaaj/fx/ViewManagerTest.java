@@ -14,18 +14,22 @@
  *
  */
 
-package dev.jaaj.view.theme;
+package dev.jaaj.fx;
 
-import javafx.stage.Stage;
+import org.junit.Before;
+import org.junit.Test;
 
-public class QtTheme implements Theme {
-    @Override
-    public boolean canApply(Stage stage) {
-        return false;
+public class ViewManagerTest {
+    private ViewManager viewManager;
+
+    @Before
+    public void setUp() throws Exception {
+
     }
 
-    @Override
-    public void applyTheme(Stage scene) {
-
+    @Test
+    public void test() {
+        viewManager.setActiveView("DefaultView.class", 500, 500);
+        viewManager.show();
     }
 }

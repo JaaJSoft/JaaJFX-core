@@ -14,22 +14,26 @@
  *
  */
 
-package dev.jaaj.view;
+package dev.jaaj.fx.theme;
 
-import javafx.application.Application;
+import com.sun.jna.platform.win32.Advapi32Util;
+import com.sun.jna.platform.win32.WinReg;
 import javafx.stage.Stage;
 
-public class Example extends Application {
+public class Windows10DarkTheme implements Theme {
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        ViewManager viewManager = new ViewManager("Oui");
-        viewManager.addView("default", new DefaultView(), "Bonjour", viewManager);
-        viewManager.addView("default2", new DefaultView(), "Bonjour2", viewManager);
-        viewManager.setActiveView("default");
-        viewManager.show();
+    public boolean canApply(Stage stage) {
+        String os = System.getProperty("os.name");
+        if (!os.toLowerCase().equals("windows 10")) {
+            return false;
+        }
+        String key = "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize";
+        int appsUseLightTheme = Advapi32Util.registryGetIntValue(WinReg.HKEY_CURRENT_USER, key, "AppsUseLightTheme");
+        return appsUseLightTheme == 0;
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    @Override
+    public void applyTheme(Stage scene) {
+
     }
 }

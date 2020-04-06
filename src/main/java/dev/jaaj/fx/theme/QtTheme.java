@@ -14,12 +14,18 @@
  *
  */
 
-package dev.jaaj.view.exception;
+package dev.jaaj.fx.theme;
 
-import dev.jaaj.view.View;
+import javafx.stage.Stage;
 
-public class ExceptionViewAlrdeadyExists extends RuntimeException {
-    public ExceptionViewAlrdeadyExists(View view) {
-        super(view.getClass().getName());
+public class QtTheme implements Theme {
+    @Override
+    public boolean canApply(Stage stage) {
+        return false;
+    }
+
+    @Override
+    public void applyTheme(Stage scene) {
+
     }
 }

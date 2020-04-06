@@ -14,22 +14,19 @@
  *
  */
 
-package dev.jaaj.view;
+package dev.jaaj.fx.theme;
 
-import org.junit.Before;
-import org.junit.Test;
+import javafx.stage.Stage;
 
-public class ViewManagerTest {
-    private ViewManager viewManager;
-
-    @Before
-    public void setUp() throws Exception {
-
+public class MacOSTheme implements Theme {
+    @Override
+    public boolean canApply(Stage stage) {
+        String os = System.getProperty("os.name");
+        return os.toLowerCase().contains("mac");
     }
 
-    @Test
-    public void test() {
-        viewManager.setActiveView("DefaultView.class", 500, 500);
-        viewManager.show();
+    @Override
+    public void applyTheme(Stage scene) {
+
     }
 }

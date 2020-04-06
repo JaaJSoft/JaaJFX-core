@@ -30,8 +30,6 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    implementation 'org.aerofx:aerofx:0.2'
     implementation 'net.java.dev.jna:jna-platform:5.4.0'
-    implementation 'com.aquafx-project:aquafx:0.2'
     implementation 'org.jfxtras:jmetro:8.5.8'
 }

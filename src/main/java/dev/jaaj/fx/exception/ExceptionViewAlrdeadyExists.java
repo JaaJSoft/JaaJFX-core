@@ -14,19 +14,12 @@
  *
  */
 
-package dev.jaaj.view.theme;
+package dev.jaaj.fx.exception;
 
-import javafx.stage.Stage;
+import dev.jaaj.fx.View;
 
-public class MacOSTheme implements Theme {
-    @Override
-    public boolean canApply(Stage stage) {
-        String os = System.getProperty("os.name");
-        return os.toLowerCase().contains("mac");
-    }
-
-    @Override
-    public void applyTheme(Stage scene) {
-
+public class ExceptionViewAlrdeadyExists extends RuntimeException {
+    public ExceptionViewAlrdeadyExists(View view) {
+        super(view.getClass().getName());
     }
 }

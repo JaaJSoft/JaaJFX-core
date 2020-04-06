@@ -14,7 +14,7 @@
  *
  */
 
-package dev.jaaj.view.theme;
+package dev.jaaj.fx.theme;
 
 import javafx.stage.Stage;
 

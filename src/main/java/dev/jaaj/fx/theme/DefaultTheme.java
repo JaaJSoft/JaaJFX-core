@@ -14,22 +14,14 @@
  *
  */
 
-package dev.jaaj.view.theme;
+package dev.jaaj.fx.theme;
 
-import com.sun.jna.platform.win32.Advapi32Util;
-import com.sun.jna.platform.win32.WinReg;
 import javafx.stage.Stage;
 
-public class Windows10LightTheme implements Theme {
+public class DefaultTheme implements Theme {
     @Override
     public boolean canApply(Stage stage) {
-        String os = System.getProperty("os.name");
-        if (!os.toLowerCase().equals("windows 10")) {
-            return false;
-        }
-        String key = "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize";
-        int appsUseLightTheme = Advapi32Util.registryGetIntValue(WinReg.HKEY_CURRENT_USER, key, "AppsUseLightTheme");
-        return appsUseLightTheme != 0;
+        return true;
     }
 
     @Override

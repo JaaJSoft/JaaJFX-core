@@ -14,14 +14,15 @@
  *
  */
 
-package dev.jaaj.view.theme;
+package dev.jaaj.fx.theme;
 
 import javafx.stage.Stage;
 
-public class GTKTheme implements Theme {
+public class WindowsAeroTheme implements Theme {
     @Override
     public boolean canApply(Stage stage) {
-        return false;
+        String os = System.getProperty("os.name");
+        return os.toLowerCase().contains("win");
     }
 
     @Override
