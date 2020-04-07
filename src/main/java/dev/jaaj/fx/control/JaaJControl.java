@@ -37,19 +37,20 @@ public abstract class JaaJControl extends Control {
     }
 
     public final void addStartListener(JaaJEventListener<StartEvent> eventListener) {
-
+        startEventInvoker.addListener(eventListener);
     }
 
     public final void removeStartListener(JaaJEventListener<StartEvent> eventListener) {
+        startEventInvoker.removeListener(eventListener);
 
     }
 
     public final void addPauseListener(JaaJEventListener<PauseEvent> eventListener) {
-
+        pauseEventInvoker.addListener(eventListener);
     }
 
-    public final void removePauseListener(JaaJEventListener<StartEvent> eventListener) {
-
+    public final void removePauseListener(JaaJEventListener<PauseEvent> eventListener) {
+        pauseEventInvoker.removeListener(eventListener);
     }
 
     public Future<?> executeBackgroundTask(Callable<?> callable) {
