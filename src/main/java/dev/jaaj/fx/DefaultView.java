@@ -16,6 +16,7 @@
 
 package dev.jaaj.fx;
 
+import dev.jaaj.fx.example.ExampleControl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -39,7 +40,7 @@ public class DefaultView extends View {
             ViewManager viewManager = (ViewManager) args[1];
             viewManager.setActiveView("default2");
         });
-        rootBorderPane.setCenter(value);
+        rootBorderPane.setCenter(new ExampleControl());
     }
 
     @Override
