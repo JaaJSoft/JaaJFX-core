@@ -13,9 +13,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 public abstract class JaaJControl extends Control {
-    private EventInvoker<UpdateEvent> updater = new EventInvoker<>();
-    private EventInvoker<PauseEvent> pauseEventInvoker = new EventInvoker<>();
-    private EventInvoker<StartEvent> startEventInvoker = new EventInvoker<>();
+    private final EventInvoker<UpdateEvent> updater = new EventInvoker<>();
+    private final EventInvoker<PauseEvent> pauseEventInvoker = new EventInvoker<>();
+    private final EventInvoker<StartEvent> startEventInvoker = new EventInvoker<>();
 
     public JaaJControl() {
     }
