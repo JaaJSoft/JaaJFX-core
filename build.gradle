@@ -18,6 +18,8 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.8'
+    id "com.jfrog.bintray" version "1.8.4"
+    id "maven-publish"
 }
 
 javafx {
@@ -25,7 +27,7 @@ javafx {
     modules = ['javafx.controls', 'javafx.fxml', "javafx.graphics", "javafx.web"]
 }
 
-group 'dev.jaaj'
+group 'dev.jaaj.fx'
 version '0.1'
 
 sourceCompatibility = 13
@@ -41,3 +43,53 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     implementation 'net.java.dev.jna:jna-platform:5.5.0'
 }
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+bintray {
+    user = BINTRAY_USER
+    key = BINTRAY_KEY
+    publications = ['mavenPublication']
+    pkg {
+        repo = 'JaaJ'
+        name = project.name
+        userOrg = "jaaj"
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/JaaJSoft/JaaJFX-core'
+        issueTrackerUrl = 'https://github.com/JaaJSoft/JaaJFX-core/issues'
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+            vcsTag = project.version
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenPublication(MavenPublication) {
+            from components.java
+            artifact sourcesJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+            groupId project.group
+            artifactId project.name
+            version project.version
+        }
+    }
+}
+
