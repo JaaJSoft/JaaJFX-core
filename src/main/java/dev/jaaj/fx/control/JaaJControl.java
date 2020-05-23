@@ -3,36 +3,74 @@ package dev.jaaj.fx.control;
 import dev.jaaj.fx.control.event.PauseEvent;
 import dev.jaaj.fx.control.event.StartEvent;
 import dev.jaaj.fx.control.event.UpdateEvent;
-import dev.jaaj.fx.control.worker.BackgroundWorkerSingleton;
+import dev.jaaj.fx.control.worker.BackgroundExecutor;
+import dev.jaaj.fx.control.worker.UpdaterExecutor;
 import dev.jaaj.fx.event.EventInvoker;
 import dev.jaaj.fx.event.JaaJEventListener;
+import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Control;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public abstract class JaaJControl extends Control {
     private final EventInvoker<UpdateEvent> updater = new EventInvoker<>();
     private final EventInvoker<PauseEvent> pauseEventInvoker = new EventInvoker<>();
     private final EventInvoker<StartEvent> startEventInvoker = new EventInvoker<>();
+    private ScheduledFuture<?> scheduledUpdate;
+    private int delayUpdate;
+    private TimeUnit timeUnit;
 
-    public JaaJControl() {
+    public JaaJControl() {//TODO CONFIG FILE
+        this(5, TimeUnit.SECONDS);
     }
 
+    public JaaJControl(int delayUpdate, TimeUnit timeUnit) {
+        this.delayUpdate = delayUpdate;
+        this.timeUnit = timeUnit;
+        ChangeListener<Boolean> visibleChangeListener = (observable, oldValue, newValue) -> {
+            if (newValue) {
+                onStart();
+            } else {
+                onPause();
+            }
+        };
+        this.visibleProperty().addListener(visibleChangeListener);
+        this.skinProperty().addListener((observable, oldValue, newValue) -> {
+            onStart();
+        });
+    }
 
     protected final void onUpdate() {
+        System.out.println("OnUpdate");
         updater.invoke(new UpdateEvent(this));
     }
-    public final void forceUpdate(){
+
+    public final void forceUpdate() {
         onUpdate();
     }
 
+    public void setScheduledUpdateRate(int delay, TimeUnit timeUnit) {
+        this.delayUpdate = delay;
+        this.timeUnit = timeUnit;
+        if (scheduledUpdate != null) {
+            scheduledUpdate.cancel(false);
+        }
+        ScheduledExecutorService updaterService = UpdaterExecutor.getUpdaterService();
+        scheduledUpdate = updaterService.scheduleAtFixedRate(this::onUpdate, delay, delay, timeUnit);
+        //scheduledUpdate = updaterService.scheduleWithFixedDelay(this::onUpdate, delay, delay, timeUnit);
+    }
+
     protected final void onStart() {
+        System.out.println("onStart");
+        setScheduledUpdateRate(delayUpdate, timeUnit);
         startEventInvoker.invoke(new StartEvent(this));
     }
 
     protected final void onPause() {
+        System.out.println("OnPause");
+        if (scheduledUpdate != null) {
+            scheduledUpdate.cancel(false);
+        }
         pauseEventInvoker.invoke(new PauseEvent(this));
     }
 
@@ -54,12 +92,12 @@ public abstract class JaaJControl extends Control {
     }
 
     public Future<?> executeBackgroundTask(Callable<?> callable) {
-        ExecutorService executorService = BackgroundWorkerSingleton.getExecutorService();
+        ExecutorService executorService = BackgroundExecutor.getExecutorService();
         return executorService.submit(callable);
     }
 
     public Future<?> executeBackgroundTask(Runnable runnable) {
-        ExecutorService executorService = BackgroundWorkerSingleton.getExecutorService();
+        ExecutorService executorService = BackgroundExecutor.getExecutorService();
         return executorService.submit(runnable);
     }
 }

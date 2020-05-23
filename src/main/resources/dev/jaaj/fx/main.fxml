@@ -17,8 +17,12 @@
   -->
 
 <?import javafx.scene.layout.BorderPane?>
+<?import dev.jaaj.fx.example.ExampleControl?>
 <BorderPane fx:id="rootBorderPane"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="400.0" prefWidth="600.0">
+    <center>
+        <ExampleControl/>
+    </center>
 </BorderPane>

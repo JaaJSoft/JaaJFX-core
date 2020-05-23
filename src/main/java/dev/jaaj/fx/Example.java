@@ -16,17 +16,26 @@
 
 package dev.jaaj.fx;
 
+import dev.jaaj.fx.example.ExampleControl;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 
 public class Example extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        ViewManager viewManager = new ViewManager("Oui");
-        viewManager.addView("default", new DefaultView(), "Bonjour", viewManager);
-        viewManager.addView("default2", new DefaultView(), "Bonjour2", viewManager);
-        viewManager.setActiveView("default");
-        viewManager.show();
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        Scene scene = new Scene(root, 800, 800);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        primaryStage.setOnCloseRequest(event -> {
+            Platform.exit();
+            System.exit(0);
+        });
     }
 
     public static void main(String[] args) {
