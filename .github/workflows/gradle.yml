@@ -24,3 +24,7 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+      env:
+        BINTRAY_USER: USER
+        BINTRAY_KEY: KEY
+
