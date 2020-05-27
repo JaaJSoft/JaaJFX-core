@@ -28,7 +28,7 @@ javafx {
 }
 
 group 'dev.jaaj.fx'
-version '0.1'
+version '0.1.1'
 
 sourceCompatibility = 13
 
