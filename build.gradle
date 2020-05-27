@@ -15,7 +15,7 @@
  */
 
 plugins {
-    id 'java'
+    id 'java-library'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.8'
     id "com.jfrog.bintray" version "1.8.4"
@@ -37,11 +37,15 @@ mainClassName = 'dev.jaaj.fx.Example'
 repositories {
     mavenCentral()
     jcenter()
+    maven {
+        url  "https://dl.bintray.com/jaaj/JaaJ"
+    }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
     implementation 'net.java.dev.jna:jna-platform:5.5.0'
+    api 'dev.jaaj:JaaJEvent:0.1'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

@@ -1,12 +1,13 @@
 package dev.jaaj.fx.control;
 
+import dev.jaaj.event.EventInvoker;
+import dev.jaaj.event.JaaJEventListener;
 import dev.jaaj.fx.control.event.PauseEvent;
 import dev.jaaj.fx.control.event.StartEvent;
 import dev.jaaj.fx.control.event.UpdateEvent;
 import dev.jaaj.fx.control.worker.BackgroundExecutor;
 import dev.jaaj.fx.control.worker.UpdaterExecutor;
-import dev.jaaj.fx.event.EventInvoker;
-import dev.jaaj.fx.event.JaaJEventListener;
+
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Control;
 

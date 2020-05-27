@@ -1,9 +1,9 @@
 package dev.jaaj.fx.control.event;
 
+import dev.jaaj.event.JaaJEvent;
 import dev.jaaj.fx.control.JaaJControl;
-import dev.jaaj.fx.event.JaaJEvent;
 
-public class PauseEvent extends JaaJEvent<JaaJControl> {
+public class PauseEvent extends ControlEvent {
     /**
      * Constructs a prototypical Event.
      *
