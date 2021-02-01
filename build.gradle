@@ -18,7 +18,6 @@ plugins {
     id 'java-library'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.8'
-    id "com.jfrog.bintray" version "1.8.4"
     id "maven-publish"
 }
 
@@ -49,52 +48,53 @@ dependencies {
     api 'dev.jaaj:JaaJEvent:0.1'
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
-
-bintray {
-    user = BINTRAY_USER
-    key = BINTRAY_KEY
-    publications = ['mavenPublication']
-    pkg {
-        repo = 'JaaJ'
-        name = project.name
-        userOrg = "jaaj"
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/JaaJSoft/JaaJFX-core'
-        issueTrackerUrl = 'https://github.com/JaaJSoft/JaaJFX-core/issues'
-        publicDownloadNumbers = true
-        version {
-            name = project.version
-            vcsTag = project.version
-        }
-    }
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 publishing {
     publications {
-        mavenPublication(MavenPublication) {
-            from components.java
-            artifact sourcesJar {
-                classifier "sources"
-            }
-            artifact javadocJar {
-                classifier "javadoc"
-            }
+        mavenJava(MavenPublication) {
             groupId project.group
             artifactId project.name
             version project.version
+            from components.java
+            pom {
+                name = project.name
+                description = 'A JavaFX library'
+                url = 'https://github.com/JaaJSoft/JaaJFX-core'
+                /*properties = [
+                        myProp: "value",
+                        "prop.with.dots": "anotherValue"
+                ]*/
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/JaaJSoft/JaaJFX-core'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username System.getenv('REPO_USER')
+                password System.getenv('REPO_PASSWORD')
+            }
+            def releasesRepoUrl = "https://nexus.jaaj.dev/repository/maven-releases/"
+            def snapshotsRepoUrl = "https://nexus.jaaj.dev/repository/maven-snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
         }
     }
 }
 
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
