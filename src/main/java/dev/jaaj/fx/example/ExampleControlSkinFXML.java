@@ -28,6 +28,6 @@ public class ExampleControlSkinFXML extends SkinFXML<ExampleControl> {
     Button button;
 
     protected ExampleControlSkinFXML(ExampleControl control) {
-        super(control, Path.of("src/main/java/dev/jaaj/fx/example/ExampleControlSkinFXML.fxml"));//TODO add a helper function ? or @
+        super(control, ExampleControlSkinFXML.class.getResource("ExampleControlSkinFXML.fxml"));//TODO add a helper function ? or @
     }
 }

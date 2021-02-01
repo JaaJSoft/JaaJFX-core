@@ -1,3 +1,3 @@
 # JaaJFX
 
-![Java CI with Gradle](https://github.com/JaaJ-dev/JaaJFX/workflows/Java%20CI%20with%20Gradle/badge.svg)
+[![Build Status](https://drone.jaaj.dev/api/badges/pchopinet/JaaJFX-core/status.svg)](https://drone.jaaj.dev/pchopinet/JaaJFX-core)

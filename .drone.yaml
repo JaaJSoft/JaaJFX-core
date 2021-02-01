@@ -1,0 +1,30 @@
+kind: pipeline
+type: kubernetes
+name: default
+steps:
+  - name: test
+    image: gradle:jdk13
+    commands:
+      - gradle assemble
+      - gradle check
+  - name: code-analysis
+      image: aosapps/drone-sonar-plugin
+      settings:
+        sonar_host:
+          from_secret: sonar_host
+        sonar_token:
+          from_secret: sonar_token
+      usingProperties: true
+  - name: publish
+    image: gradle:jdk13
+    environment:
+      REPO_USER:
+        from_secret: REPO_USER
+      REPO_PASSWORD:
+        from_secret: REPO_PASSWORD
+    commands:
+      - gradle assemble
+      - gradle publish
+    when:
+      event:
+        - tag

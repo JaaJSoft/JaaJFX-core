@@ -29,6 +29,7 @@ import javafx.scene.control.Control;
 
 import java.util.concurrent.*;
 
+@Deprecated
 public abstract class JaaJControl extends Control {
     private final EventInvoker<UpdateEvent> updater = new EventInvoker<>();
     private final EventInvoker<PauseEvent> pauseEventInvoker = new EventInvoker<>();

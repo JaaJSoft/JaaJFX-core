@@ -16,10 +16,10 @@
 
 package dev.jaaj.fx.example;
 
-import dev.jaaj.fx.control.JaaJControl;
+import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 
-public class ExampleControl extends JaaJControl {
+public class ExampleControl extends Control {
     public ExampleControl() {
 
     }
