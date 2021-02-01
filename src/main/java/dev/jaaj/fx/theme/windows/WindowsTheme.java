@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 JaaJSoft
+ * Copyright 2021 JaaJSoft
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,9 @@
  * limitations under the License.
  */
 
-package dev.jaaj.fx.theme;
+package dev.jaaj.fx.theme.windows;
 
-import javafx.stage.Stage;
-
-public class WindowsAeroTheme implements Theme {
-    @Override
-    public boolean canApply(Stage stage) {
-        String os = System.getProperty("os.name");
-        return os.toLowerCase().contains("win");
-    }
-
-    @Override
-    public void applyTheme(Stage scene) {
-
-    }
+public enum WindowsTheme {
+    LIGHT,
+    DARK
 }

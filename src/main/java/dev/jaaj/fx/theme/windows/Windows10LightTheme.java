@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 JaaJSoft
+ * Copyright 2021 JaaJSoft
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,20 @@
  * limitations under the License.
  */
 
-package dev.jaaj.fx.theme;
+package dev.jaaj.fx.theme.windows;
 
-import com.sun.jna.platform.win32.Advapi32Util;
-import com.sun.jna.platform.win32.WinReg;
+import dev.jaaj.fx.theme.Theme;
 import javafx.stage.Stage;
 
-public class Windows10DarkTheme implements Theme {
+import static dev.jaaj.fx.theme.windows.WindowsUtility.isWindows10;
+
+public class Windows10LightTheme implements Theme {
     @Override
     public boolean canApply(Stage stage) {
-        String os = System.getProperty("os.name");
-        if (!os.toLowerCase().equals("windows 10")) {
-            return false;
+        if (isWindows10()) {
+            return WindowsUtility.getWindowsTheme().equals(WindowsTheme.LIGHT);
         }
-        String key = "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize";
-        int appsUseLightTheme = Advapi32Util.registryGetIntValue(WinReg.HKEY_CURRENT_USER, key, "AppsUseLightTheme");
-        return appsUseLightTheme == 0;
+        return false;
     }
 
     @Override
