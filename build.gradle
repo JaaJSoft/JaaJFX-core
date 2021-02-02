@@ -37,7 +37,7 @@ repositories {
     mavenCentral()
     jcenter()
     maven {
-        url  "https://dl.bintray.com/jaaj/JaaJ"
+        url  "https://nexus.jaaj.dev/repository/maven-public/"
     }
 }
 
@@ -45,7 +45,7 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.12'
     implementation 'net.java.dev.jna:jna-platform:5.5.0'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.28'
-    api 'dev.jaaj:JaaJEvent:0.1'
+    implementation 'dev.jaaj:event:0.1.7'
 }
 
 java {
