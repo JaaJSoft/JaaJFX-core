@@ -14,5 +14,21 @@
  * limitations under the License.
  */
 
-rootProject.name = 'core'
+package dev.jaaj.fx.core.control.event;
 
+import dev.jaaj.event.JaaJEvent;
+import dev.jaaj.fx.core.control.JaaJControl;
+
+public class ControlEvent extends JaaJEvent<JaaJControl> {
+    /**
+     * Constructs a prototypical Event.
+     *
+     * @param source the object on which the Event initially occurred
+     * @throws IllegalArgumentException if source is null
+     */
+    public ControlEvent(JaaJControl source) {
+        super(source);
+    }
+
+
+}

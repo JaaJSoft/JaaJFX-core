@@ -14,5 +14,18 @@
  * limitations under the License.
  */
 
-rootProject.name = 'core'
+package dev.jaaj.fx.core.example;
 
+import javafx.scene.control.Control;
+import javafx.scene.control.Skin;
+
+public class ExampleControl extends Control {
+    public ExampleControl() {
+
+    }
+
+    @Override
+    protected Skin<?> createDefaultSkin() {
+        return new ExampleControlSkinFXML(this);
+    }
+}

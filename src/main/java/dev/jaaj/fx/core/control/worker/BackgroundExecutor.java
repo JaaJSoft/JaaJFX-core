@@ -14,5 +14,18 @@
  * limitations under the License.
  */
 
-rootProject.name = 'core'
+package dev.jaaj.fx.core.control.worker;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class BackgroundExecutor {
+    private static ExecutorService executorService;
+
+    public static ExecutorService getExecutorService() {
+        if (executorService == null) {
+            executorService = Executors.newCachedThreadPool();
+        }
+        return executorService;
+    }
+}

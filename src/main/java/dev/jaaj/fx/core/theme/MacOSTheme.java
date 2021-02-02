@@ -14,5 +14,19 @@
  * limitations under the License.
  */
 
-rootProject.name = 'core'
+package dev.jaaj.fx.core.theme;
 
+import javafx.stage.Stage;
+
+public class MacOSTheme implements Theme {
+    @Override
+    public boolean canApply(Stage stage) {
+        String os = System.getProperty("os.name");
+        return os.toLowerCase().contains("mac");
+    }
+
+    @Override
+    public void applyTheme(Stage scene) {
+
+    }
+}

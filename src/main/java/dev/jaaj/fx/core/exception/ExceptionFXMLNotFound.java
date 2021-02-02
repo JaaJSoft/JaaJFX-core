@@ -14,5 +14,10 @@
  * limitations under the License.
  */
 
-rootProject.name = 'core'
+package dev.jaaj.fx.core.exception;
 
+public class ExceptionFXMLNotFound extends Exception {
+    public ExceptionFXMLNotFound(String fxml) {
+        super(fxml);
+    }
+}

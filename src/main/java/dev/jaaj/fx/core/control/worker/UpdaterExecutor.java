@@ -14,5 +14,18 @@
  * limitations under the License.
  */
 
-rootProject.name = 'core'
+package dev.jaaj.fx.core.control.worker;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
+public class UpdaterExecutor {
+    private static ScheduledExecutorService updaterExecutorService;
+
+    public static ScheduledExecutorService getUpdaterService() {
+        if (updaterExecutorService == null) {
+            updaterExecutorService = Executors.newScheduledThreadPool(4);//TODO config file
+        }
+        return updaterExecutorService;
+    }
+}

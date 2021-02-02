@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 JaaJSoft
+ * Copyright 2021 JaaJSoft
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,5 +14,24 @@
  * limitations under the License.
  */
 
-rootProject.name = 'core'
+package dev.jaaj.fx.core.theme.windows;
 
+import dev.jaaj.fx.core.theme.Theme;
+import javafx.stage.Stage;
+
+import static dev.jaaj.fx.core.theme.windows.WindowsUtility.isWindows10;
+
+public class Windows10DarkTheme implements Theme {
+    @Override
+    public boolean canApply(Stage stage) {
+        if (isWindows10()) {
+            return WindowsUtility.getWindowsTheme().equals(WindowsTheme.DARK);
+        }
+        return false;
+    }
+
+    @Override
+    public void applyTheme(Stage scene) {
+
+    }
+}

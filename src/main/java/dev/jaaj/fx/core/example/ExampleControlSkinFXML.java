@@ -14,5 +14,18 @@
  * limitations under the License.
  */
 
-rootProject.name = 'core'
+package dev.jaaj.fx.core.example;
 
+import dev.jaaj.fx.core.control.SkinFXML;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
+public class ExampleControlSkinFXML extends SkinFXML<ExampleControl> {
+
+    @FXML
+    Button button;
+
+    protected ExampleControlSkinFXML(ExampleControl control) {
+        super(control, ExampleControlSkinFXML.class.getResource("ExampleControlSkinFXML.fxml"));
+    }
+}

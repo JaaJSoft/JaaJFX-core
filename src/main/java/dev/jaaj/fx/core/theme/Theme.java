@@ -14,5 +14,12 @@
  * limitations under the License.
  */
 
-rootProject.name = 'core'
+package dev.jaaj.fx.core.theme;
 
+import javafx.stage.Stage;
+
+public interface Theme {
+    boolean canApply(Stage stage);
+
+    void applyTheme(Stage scene);
+}
