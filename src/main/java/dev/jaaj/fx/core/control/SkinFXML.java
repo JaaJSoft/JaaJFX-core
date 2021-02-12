@@ -26,14 +26,21 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
+import java.util.ResourceBundle;
 
 public abstract class SkinFXML<T extends Control> extends SkinBase<T> {
 
+    public SkinFXML(T control, URL url) {
+        this(control, url, null);
+    }
 
-    public SkinFXML(T control, URL url){
+    public SkinFXML(T control, URL url, ResourceBundle resourceBundle) {
         super(control);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setController(this);
+        if (resourceBundle != null) {
+            fxmlLoader.setResources(resourceBundle);
+        }
         Node load;
         try {
             fxmlLoader.setLocation(url);
@@ -44,9 +51,5 @@ public abstract class SkinFXML<T extends Control> extends SkinBase<T> {
         }
         getChildren().add(load);
     }
-    public SkinFXML(T control, Path pathFXML) throws MalformedURLException {
-        this(control, pathFXML.toUri().toURL());
-    }
-
 
 }
