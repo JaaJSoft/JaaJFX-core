@@ -16,7 +16,7 @@
 
 package dev.jaaj.fx.core.example;
 
-import dev.jaaj.fx.core.control.SkinFXML;
+import dev.jaaj.fx.core.skin.SkinFXML;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
