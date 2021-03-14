@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 JaaJSoft
+ * Copyright 2021 JaaJSoft
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,21 @@
 
 package dev.jaaj.fx.core.theme;
 
-import javafx.stage.Stage;
+import javafx.scene.Scene;
 
 public class QtTheme implements Theme {
     @Override
-    public boolean canApply(Stage stage) {
+    public boolean canApply(Scene scene) {
         return false;
     }
 
     @Override
-    public void applyTheme(Stage scene) {
+    public void applyTheme(Scene scene) {
 
+    }
+
+    @Override
+    public String getPrettyName() {
+        return "Qt";
     }
 }

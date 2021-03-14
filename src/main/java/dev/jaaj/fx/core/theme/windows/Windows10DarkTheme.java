@@ -17,13 +17,13 @@
 package dev.jaaj.fx.core.theme.windows;
 
 import dev.jaaj.fx.core.theme.Theme;
-import javafx.stage.Stage;
+import javafx.scene.Scene;
 
 import static dev.jaaj.fx.core.theme.windows.WindowsUtility.isWindows10;
 
 public class Windows10DarkTheme implements Theme {
     @Override
-    public boolean canApply(Stage stage) {
+    public boolean canApply(Scene scene) {
         if (isWindows10()) {
             return WindowsUtility.getWindowsTheme().equals(WindowsTheme.DARK);
         }
@@ -31,7 +31,12 @@ public class Windows10DarkTheme implements Theme {
     }
 
     @Override
-    public void applyTheme(Stage scene) {
+    public void applyTheme(Scene scene) {
 
+    }
+
+    @Override
+    public String getPrettyName() {
+        return "Windows 10 Dark";
     }
 }

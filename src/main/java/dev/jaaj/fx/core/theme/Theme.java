@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 JaaJSoft
+ * Copyright 2021 JaaJSoft
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,13 @@
 
 package dev.jaaj.fx.core.theme;
 
-import javafx.stage.Stage;
+import javafx.scene.Scene;
 
 public interface Theme {
-    boolean canApply(Stage stage);
 
-    void applyTheme(Stage scene);
+    boolean canApply(Scene scene);
+
+    void applyTheme(Scene scene);
+
+    String getPrettyName();
 }

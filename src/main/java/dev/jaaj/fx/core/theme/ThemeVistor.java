@@ -14,20 +14,27 @@
  * limitations under the License.
  */
 
-package dev.jaaj.fx.core.theme.windows;
+package dev.jaaj.fx.core.theme;
 
-import dev.jaaj.fx.core.theme.Theme;
-import javafx.stage.Stage;
+import javafx.scene.Scene;
 
-public class WindowsAeroTheme implements Theme {
-    @Override
-    public boolean canApply(Stage stage) {
-        String os = System.getProperty("os.name");
-        return os.toLowerCase().contains("win");
+import java.util.ArrayList;
+import java.util.List;
+
+public class ThemeVistor {
+    private final List<Theme> themes = new ArrayList<>();
+
+    public ThemeVistor addTheme(Theme theme) {
+        themes.add(theme);
+        return this;
     }
 
-    @Override
-    public void applyTheme(Stage scene) {
-
+    public Theme visit(Scene scene) {
+        for (Theme theme : themes) {
+            if (theme.canApply(scene)) {
+                return theme;
+            }
+        }
+        return new DefaultTheme();
     }
 }
