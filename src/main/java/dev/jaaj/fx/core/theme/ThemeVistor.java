@@ -31,7 +31,7 @@ public class ThemeVistor {
 
     public Theme visit(Scene scene) {
         for (Theme theme : themes) {
-            if (theme.canApply(scene)) {
+            if (theme.canApply()) {
                 return theme;
             }
         }

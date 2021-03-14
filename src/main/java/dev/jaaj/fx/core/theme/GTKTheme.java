@@ -20,7 +20,7 @@ import javafx.scene.Scene;
 
 public class GTKTheme implements Theme {
     @Override
-    public boolean canApply(Scene scene) {
+    public boolean canApply() {
         return false;
     }
 

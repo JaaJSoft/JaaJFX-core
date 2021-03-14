@@ -20,7 +20,7 @@ import javafx.scene.Scene;
 
 public interface Theme {
 
-    boolean canApply(Scene scene);
+    boolean canApply();
 
     void applyTheme(Scene scene);
 

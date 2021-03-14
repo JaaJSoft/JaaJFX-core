@@ -20,7 +20,7 @@ import javafx.scene.Scene;
 
 public class DefaultTheme implements Theme {
     @Override
-    public boolean canApply(Scene scene) {
+    public boolean canApply() {
         return true;
     }
 

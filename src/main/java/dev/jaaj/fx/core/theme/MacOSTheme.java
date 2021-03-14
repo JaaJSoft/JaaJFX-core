@@ -20,7 +20,7 @@ import javafx.scene.Scene;
 
 public class MacOSTheme implements Theme {
     @Override
-    public boolean canApply(Scene scene) {
+    public boolean canApply() {
         String os = System.getProperty("os.name");
         return os.toLowerCase().contains("mac");
     }

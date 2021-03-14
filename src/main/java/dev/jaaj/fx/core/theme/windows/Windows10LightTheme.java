@@ -25,7 +25,7 @@ import static dev.jaaj.fx.core.theme.windows.WindowsUtility.isWindows10;
 
 public class Windows10LightTheme implements Theme {
     @Override
-    public boolean canApply(Scene scene) {
+    public boolean canApply() {
         if (isWindows10()) {
             return WindowsUtility.getWindowsTheme().equals(WindowsTheme.LIGHT);
         }
