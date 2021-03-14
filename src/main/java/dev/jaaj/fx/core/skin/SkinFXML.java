@@ -23,9 +23,7 @@ import javafx.scene.control.SkinBase;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 public abstract class SkinFXML<T extends Control> extends SkinBase<T> {
@@ -47,7 +45,6 @@ public abstract class SkinFXML<T extends Control> extends SkinBase<T> {
             load = fxmlLoader.load();
         } catch (IOException e) {
             load = new TextArea(e.getMessage());
-            e.printStackTrace();
         }
         getChildren().add(load);
     }
