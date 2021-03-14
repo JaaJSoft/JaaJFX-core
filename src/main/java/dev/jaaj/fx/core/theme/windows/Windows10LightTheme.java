@@ -18,6 +18,8 @@ package dev.jaaj.fx.core.theme.windows;
 
 import dev.jaaj.fx.core.theme.Theme;
 import javafx.scene.Scene;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 import static dev.jaaj.fx.core.theme.windows.WindowsUtility.isWindows10;
 
@@ -32,7 +34,7 @@ public class Windows10LightTheme implements Theme {
 
     @Override
     public void applyTheme(Scene scene) {
-
+        new JMetro(scene, Style.LIGHT);
     }
 
     @Override

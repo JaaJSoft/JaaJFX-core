@@ -16,29 +16,24 @@
 
 package dev.jaaj.fx.core.theme.windows;
 
-import dev.jaaj.fx.core.theme.Theme;
-import javafx.scene.Scene;
-import jfxtras.styles.jmetro.JMetro;
-import jfxtras.styles.jmetro.Style;
+import org.junit.Test;
 
-import static dev.jaaj.fx.core.theme.windows.WindowsUtility.isWindows10;
+import static org.junit.Assert.*;
 
-public class Windows10DarkTheme implements Theme {
-    @Override
-    public boolean canApply(Scene scene) {
-        if (isWindows10()) {
-            return WindowsUtility.getWindowsTheme().equals(WindowsTheme.DARK);
+public class WindowsUtilityTest {
+
+    @Test
+    public void getWindowsTheme() {
+        if (WindowsUtility.isWindows10()) {
+            assertEquals(WindowsTheme.DARK, WindowsUtility.getWindowsTheme());
+            assertNotEquals(WindowsTheme.LIGHT, WindowsUtility.getWindowsTheme());
         }
-        return false;
     }
 
-    @Override
-    public void applyTheme(Scene scene) {
-        new JMetro(scene, Style.DARK);
-    }
-
-    @Override
-    public String getPrettyName() {
-        return "Windows 10 Dark";
+    @Test
+    public void isWindows10() {
+        if (WindowsUtility.isWindows10()) {
+            assertTrue(WindowsUtility.isWindows10());
+        }
     }
 }
