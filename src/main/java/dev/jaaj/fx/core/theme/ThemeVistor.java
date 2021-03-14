@@ -16,8 +16,6 @@
 
 package dev.jaaj.fx.core.theme;
 
-import javafx.scene.Scene;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class ThemeVistor {
         return this;
     }
 
-    public Theme visit(Scene scene) {
+    public Theme visit() {
         for (Theme theme : themes) {
             if (theme.canApply()) {
                 return theme;
